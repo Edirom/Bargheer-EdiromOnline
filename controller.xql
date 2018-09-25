@@ -16,7 +16,7 @@ else if ($exist:resource eq "app.js") then
     </dispatch>
 else if (contains($exist:path, '$bargheer-edition$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{replace($exist:path, '.*\$bargheer\-edition\$', substring-after($config:bargheer-edition-root, '/apps'))}"/>
+        <forward url="{concat($exist:controller, '/..', replace($exist:path, '.*\$bargheer\-edition\$', substring-after($config:bargheer-edition-root, '/apps')))}"/>
     </dispatch>
 (:else if (starts-with($exist:path, "/data")) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
