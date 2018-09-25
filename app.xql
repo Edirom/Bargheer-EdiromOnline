@@ -22,10 +22,12 @@ xquery version "1.0";
  :)
  
 declare namespace edirom="http://www.edirom.de/ns/1.3";
- 
+
+import module namespace config="http://exist-db.org/xquery/apps/config" at "modules/config.xqm";
+
 declare option exist:serialize "method=text media-type=text/plain omit-xml-declaration=yes";
  
-let $edition := (collection('/db/contents')//edirom:edition)[1]
+let $edition := (collection($config:bargheer-edition-root)//edirom:edition)[1]
 return
 concat("
 Ext.application({

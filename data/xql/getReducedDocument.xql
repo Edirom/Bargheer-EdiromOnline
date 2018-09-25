@@ -22,6 +22,8 @@ xquery version "1.0";
 
 declare namespace request="http://exist-db.org/xquery/request";
 
+import module namespace config = "http://exist-db.org/xquery/apps/config" at "../../modules/config.xqm";
+
 declare option exist:serialize "method=xhtml media-type=text/html omit-xml-declaration=yes indent=yes";
 (:declare option exist:serialize "method=text media-type=text/plain omit-xml-declaration=yes";:)
 
@@ -47,4 +49,4 @@ let $xslInstruction := for $i in util:serialize($xslInstruction, ())
 
 let $xsl := if($xslInstruction)then(doc($xslInstruction))else('../xslt/teiBody2HTML.xsl')
 return
-    transform:transform($doc/root(), $xsl, <parameters><param name="base" value="{concat($base, '/../xslt/')}"/><param name="idPrefix" value="{$idPrefix}"/></parameters>)
+    transform:transform($doc/root(), $xsl, <parameters><param name="base" value="{concat($base, '/../xslt/')}"/><param name="idPrefix" value="{$idPrefix}"/><param name="graphicsPrefix" value="{$config:img-scaler-base}"/></parameters>)

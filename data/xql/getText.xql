@@ -21,8 +21,9 @@ xquery version "1.0";
 :)
 
 declare namespace request="http://exist-db.org/xquery/request";
-
 declare namespace tei="http://www.tei-c.org/ns/1.0";
+
+import module namespace config = "http://exist-db.org/xquery/apps/config" at "../../modules/config.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html omit-xml-declaration=yes indent=yes";
 (:declare option exist:serialize "method=text media-type=text/plain omit-xml-declaration=yes";:)
@@ -44,4 +45,4 @@ let $xsl := if($xslInstruction)then($xslInstruction)else('../xslt/teiBody2HTML.x
 
 let $doc := transform:transform($doc, doc('../xslt/edirom_idPrefix.xsl'), <parameters><param name="idPrefix" value="{$idPrefix}"/></parameters>)
 return
-    transform:transform($doc, doc($xsl), <parameters><param name="base" value="{concat($base, '/../xslt/')}"/></parameters>)
+    transform:transform($doc, doc($xsl), <parameters><param name="base" value="{concat($base, '/../xslt/')}"/><param name="graphicsPrefix" value="{$config:img-scaler-base}"/></parameters>)

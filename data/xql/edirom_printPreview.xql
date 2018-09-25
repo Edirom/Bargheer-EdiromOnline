@@ -9,13 +9,15 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace eof = "http://www.edirom.de/xquery/ediromOnlineFunctions";
 declare namespace xhtml = "http://www.w3.org/1999/xhtml";
 
+import module namespace config = "http://exist-db.org/xquery/apps/config" at "../../modules/config.xqm";
+
 declare option exist:serialize "method=html media-type=text/html omit-xml-declaration=yes indent=yes";
 
 (: VARIABLES ========================================================= :)
 
 declare variable $lang := 'en';
 declare variable $base := concat('file:', replace(system:get-module-load-path(),'\\','/'), '/../xslt/');
-declare variable $facsBasePath := '../../../digilib/Scaler/';
+declare variable $facsBasePath := $config:img-scaler-base;
 declare variable $printResolution := 150;
 declare variable $facsAreaWidth := 6.5;(: in inch :)
 declare variable $facsMetaHeight := 30;

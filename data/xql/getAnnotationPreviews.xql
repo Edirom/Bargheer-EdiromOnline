@@ -31,6 +31,7 @@ import module namespace teitext="http://www.edirom.de/xquery/teitext" at "../xqm
 import module namespace eutil = "http://www.edirom.de/xquery/util" at "../xqm/util.xqm";
 
 import module namespace functx = "http://www.functx.com" at "../xqm/functx-1.0-nodoc-2007-01.xq";
+import module namespace config = "http://exist-db.org/xquery/apps/config" at "../../modules/config.xqm";
 
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
@@ -42,7 +43,7 @@ declare option exist:serialize "method=xhtml media-type=text/html omit-xml-decla
 
 
 declare variable $imageWidth := 600;
-declare variable $imageBasePath := '../../../digilib/Scaler/';
+declare variable $imageBasePath := $config:img-scaler-base;
 
 
 

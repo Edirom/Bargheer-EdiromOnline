@@ -27,6 +27,8 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace system="http://exist-db.org/xquery/system";
 declare namespace transform="http://exist-db.org/xquery/transform";
 
+import module namespace config = "http://exist-db.org/xquery/apps/config" at "../../modules/config.xqm";
+
 declare option exist:serialize "method=xhtml media-type=text/html omit-xml-declaration=yes indent=yes";
 
 let $viewXtype := request:get-parameter('viewXtype', '')
@@ -35,6 +37,6 @@ let $base := concat(replace(system:get-module-load-path(), 'embedded-eXist-serve
 let $doc := doc(concat('file:', system:get-module-load-path(), '/../../resources/help/',$viewXtype, '.xml'))/root()
 let $doc := doc(concat(replace(system:get-module-load-path(), 'embedded-eXist-server', ''), '/../../resources/help/',$viewXtype, '.xml'))/root() (: TODO: Prüfen, wie wir an dem replace vorbei kommen:)
 return(
-    transform:transform($doc, concat($base, 'teiBody2HTML.xsl'), <parameters><param name="base" value="{$base}"/></parameters>)
+    transform:transform($doc, concat($base, 'teiBody2HTML.xsl'), <parameters><param name="base" value="{$base}"/><param name="graphicsPrefix" value="{$config:img-scaler-base}"/></parameters>)
 (:$base:)
 )

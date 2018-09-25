@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://expath.org/ns/pkg" name="http://www.edirom.de/apps/EdiromOnline" abbrev="EdiromOnline" version="0.1" spec="1.0"><title>Edirom Online</title></package>
+<package xmlns="http://expath.org/ns/pkg" 
+    name="http://www.edirom.de/apps/EdiromOnline"
+    abbrev="Bargheer-EdiromOnline" 
+    version="0.1" 
+    spec="1.0">
+    <title>Bargheer-Edirom-Online</title>
+</package>

@@ -90,7 +90,7 @@ Ext.define('de.edirom.online.view.window.image.ImageViewer', {
 
         me.imgWidth = width;
         me.imgHeight = height;
-        me.imgPath = '../../../digilib/Scaler/' + path;
+        me.imgPath = 'https://bargheer.edirom.de/Scaler/' + path;
 
         me.svg = Raphael(me.id + '_facsCont', me.imgWidth, me.imgHeight);
         me.svg.setViewBox(0, 0, me.imgWidth, me.imgHeight, false);

@@ -7,6 +7,9 @@ module namespace config="http://exist-db.org/xquery/apps/config";
 declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace expath="http://expath.org/ns/pkg";
 
+declare variable $config:bargheer-edition-root := '/db/apps/Bargheer-Edition';
+declare variable $config:img-scaler-base := 'https://bargheer.edirom.de/Scaler/';
+
 (: 
     Determine the application root collection from the current module load path.
 :)

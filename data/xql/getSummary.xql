@@ -23,8 +23,10 @@ xquery version "1.0";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
-declare namespace image="http://www.edirom.de/ns/image";
+declare namespace img="http://www.edirom.de/ns/image";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+
+import module namespace config = "http://exist-db.org/xquery/apps/config" at "../../modules/config.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html omit-xml-declaration=yes indent=yes";
 
@@ -172,7 +174,7 @@ declare function local:getSourceSummary($doc, $facsBasePath) {
 declare function local:getImagePath($basePath, $uri, $width) {
     if(starts-with($uri, 'xmldb:exist'))
     then(
-        let $imagePath := doc($uri)/image:image/@file
+        let $imagePath := doc($uri)/img:image/@file
         return
             concat($basePath, $imagePath, '?dw=', $width, '&amp;amp;mo=fit')
     )
@@ -437,7 +439,7 @@ return
     if($type = 'work')
     then(local:getWorkSummary($doc, $docUri))
     else if($type = 'source')
-    then(local:getSourceSummary($doc, '../../../digilib/Scaler/'))
+    then(local:getSourceSummary($doc, $config:img-scaler-base))
     else if($type = 'text')
-    then(local:getTextSummary($doc, '../../../digilib/Scaler/'))
+    then(local:getTextSummary($doc, $config:img-scaler-base))
     else()
